@@ -1,1 +1,23 @@
-<h2> INDEX </h2>
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+        <title>ChopURL</title>
+    </head>
+    <body>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="url">Enter your URL:</label>
+            <input type="url" name="url" required>
+        
+            <label for="chopurl_option">Select the service:</label>
+            <select name="chopurl_option" id="chopurl_option">
+                <option value="chopservice">ChopURL</option>
+                <option value="pyservice">TinyURL</option>
+            </select>
+        
+            <button type="submit">Chop URL!</button>
+        </form>
+    </body>
+</html>
