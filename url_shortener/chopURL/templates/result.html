@@ -1,9 +1,11 @@
 <h2>The URL was CHOPPED!</h2>
 
 {% if chop_short_url %}
-<p>🔗 ChopURL link: <a href="/{{ short_url.short_code }}">http://localhost:8000/{{ short_url.short_code }}</a></p>
+<p>🔗 ChopURL link: <a href="{{url}}">{{ chop_short_url }}</a></p>
 {% endif %}
 
 {% if pyservice_short_url %}
-<p>🌐 Pyshorteners link (TinyURL): <a href="{{ external_short }}">{{ external_short }}</a></p>
+<p>🌐 Pyshorteners link (TinyURL): <a href="{{url}}">{{ pyservice_short_url }}</a></p>
 {% endif %}
+
+<p>🔗 Chop more URLs!: <a href="http://localhost:8000/">ChopURL</a></p>

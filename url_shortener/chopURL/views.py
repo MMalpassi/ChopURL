@@ -15,6 +15,7 @@ def chop_url(request):
             code = generate_short_code()
             chop_short_url = shortURL.objects.create(original_url=url, short_code=code)
             return render(request, 'result.html', {
+                'url': url,
                 'chop_short_url': chop_short_url,
                 'pyservice_short_url': None,
             })
@@ -26,6 +27,7 @@ def chop_url(request):
             except Exception as e:
                 pyservice_short_url = None
             return render(request, 'result.html', {
+                'url': url,
                 'chop_short_url': None,
                 'pyservice_short_url': pyservice_short_url,
             })

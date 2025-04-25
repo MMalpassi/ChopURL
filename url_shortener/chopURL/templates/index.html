@@ -6,18 +6,25 @@
         <title>ChopURL</title>
     </head>
     <body>
-        <form method="POST">
-            {% csrf_token %}
-            <label for="url">Enter your URL:</label>
-            <input type="url" name="url" required>
-        
-            <label for="chopurl_option">Select the service:</label>
-            <select name="chopurl_option" id="chopurl_option">
-                <option value="chopservice">ChopURL</option>
-                <option value="pyservice">TinyURL</option>
-            </select>
-        
-            <button type="submit">Chop URL!</button>
-        </form>
+        <h1>Welcome to ChopURL!</h1>
+        <div class="main-container">
+            <div class="description">
+                <h2>Shorten, customize, and share short URLs with your brand.</h2>
+            </div>
+    
+            <form method="POST">
+                {% csrf_token %}
+                <label for="url">Enter your URL:</label>
+                <input type="url" name="url" required>
+    
+                <label for="chopurl_option">Select the service:</label>
+                <select name="chopurl_option" id="chopurl_option">
+                    <option value="chopservice">ChopURL</option>
+                    <option value="pyservice">TinyURL</option>
+                </select>
+    
+                <button type="submit">Chop URL!</button>
+            </form>
+        </div>
     </body>
 </html>
