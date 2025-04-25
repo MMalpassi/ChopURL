@@ -1,7 +1,7 @@
 <h2>The URL was CHOPPED!</h2>
 
 {% if chop_short_url %}
-<p>🔗 ChopURL link: <a href="{{url}}">{{ chop_short_url }}</a></p>
+<p>🔗 ChopURL link: <a href="{{chop_short_url.short_code}}">{{ request.build_absolute_uri }}/{{ chop_short_url.short_code }}</a></p>
 {% endif %}
 
 {% if pyservice_short_url %}

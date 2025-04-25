@@ -32,7 +32,6 @@ def chop_url(request):
                 'pyservice_short_url': pyservice_short_url,
             })
     
-    # If method == GET:
     return render(request, 'index.html')
 
 def redirect_url(request, code):
