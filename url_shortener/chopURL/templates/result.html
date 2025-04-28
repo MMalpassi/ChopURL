@@ -2,12 +2,17 @@
 {% load static %}
 <html>
     <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
         <title>ChopURL - Result</title>
     </head>
     <body>
         <h1>Your URL was Chopped!</h1>
         
+        <div id="alert-container" class="position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+            
+        </div>
+
         <div class="main-container">
             <div class="description">
                 <h2>Here's your new short link:</h2>
@@ -23,6 +28,7 @@
                                 {{ request.build_absolute_uri }}/{{ chop_short_url.short_code }}
                             {% endif %}
                         </a>
+                        <button class="btn btn-primary btn-sm ms-2" onclick="copyChopURL()">Copy</button>
                     </p>
                 {% endif %}
 
@@ -31,11 +37,53 @@
                         <a href="{{ pyservice_short_url }}">
                             {{ pyservice_short_url }}
                         </a>
+                        <button class="btn btn-primary btn-sm ms-2" onclick="copyTinyUrl()">Copy</button>
                     </p>
                 {% endif %}
 
                 <p>🔗 Chop more URLs!: <a href="http://localhost:8000/">Go back</a></p>
             </div>
         </div>
+
+        <script>
+
+            function showAlert(message, type){
+                const alertContainer = document.getElementById('alert-container');
+                const wrapper = document.createElement('div');
+                wrapper.innerHTML = `
+                <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                `;
+                alertContainer.append(wrapper);
+
+                setTimeout(() => {
+                    wrapper.remove();
+                }, 3000);
+            }
+
+            function copyChopURL() {
+                const linkElement = document.querySelector(".result-box a[href*='{{ chop_short_url.short_code }}']");
+                if (linkElement) {
+                    const linkText = linkElement.textContent.trim();
+                    navigator.clipboard.writeText(linkText)
+                        .then(() => showAlert("ChopURL copied to clipboard!", "success"))
+                        .catch(err => showAlert("Failed to copy: " + err, "danger"));
+                }
+            }
+            
+            function copyTinyUrl() {
+                const linkElement = document.querySelector(".result-box a[href='{{ pyservice_short_url }}']");
+                if (linkElement) {
+                    const linkText = linkElement.textContent.trim();
+                    navigator.clipboard.writeText(linkText)
+                        .then(() => showAlert("ChopURL copied to clipboard!", "success"))
+                        .catch(err => showAlert("Failed to copy: " + err, "danger"));
+                }
+            }
+        </script>
+            
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
