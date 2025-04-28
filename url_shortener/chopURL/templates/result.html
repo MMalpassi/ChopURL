@@ -16,8 +16,12 @@
             <div class="result-box">
                 {% if chop_short_url %}
                     <p>🔗 ChopURL link: 
-                        <a href="/{{ chop_short_url.short_code }}">
-                            {{ request.build_absolute_uri }}/{{ chop_short_url.short_code }}
+                        <a href="{% if chop_short_url.custom_domain %}http://{{ chop_short_url.custom_domain }}/{{ chop_short_url.short_code }}{% else %}{{ request.build_absolute_uri }}/{{ chop_short_url.short_code }}{% endif %}">
+                            {% if chop_short_url.custom_domain %}
+                                http://{{ chop_short_url.custom_domain }}/{{ chop_short_url.short_code }}
+                            {% else %}
+                                {{ request.build_absolute_uri }}/{{ chop_short_url.short_code }}
+                            {% endif %}
                         </a>
                     </p>
                 {% endif %}

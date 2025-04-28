@@ -16,6 +16,9 @@
                 {% csrf_token %}
                 <label for="url">Enter your URL:</label>
                 <input type="url" name="url" required>
+
+                <label for="custom_domain">Enter custom domain (optional and only available with ChopURL service):</label>
+                <input type="text" name="custom_domain" placeholder="e.g., mybrand.com">
     
                 <label for="chopurl_option">Select the service:</label>
                 <select name="chopurl_option" id="chopurl_option">

@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
+from django.http import HttpResponseBadRequest
 from .models import shortURL
 import string, random
 import pyshorteners
@@ -10,10 +11,15 @@ def chop_url(request):
     if request.method == 'POST':
         url = request.POST.get('url')
         shortener_option = request.POST.get('chopurl_option')
+        custom_domain = request.POST.get('custom_domain')
 
         if shortener_option == 'chopservice':
             code = generate_short_code()
-            chop_short_url = shortURL.objects.create(original_url=url, short_code=code)
+            chop_short_url = shortURL.objects.create(
+                original_url=url, 
+                short_code=code,
+                custom_domain=custom_domain if custom_domain else None
+            )
             return render(request, 'result.html', {
                 'url': url,
                 'chop_short_url': chop_short_url,
@@ -35,5 +41,14 @@ def chop_url(request):
     return render(request, 'index.html')
 
 def redirect_url(request, code):
-    short_url = get_object_or_404(shortURL, short_code=code)
+    host = request.get_host()
+
+    try:
+        short_url = shortURL.objects.get(short_code=code, custom_domain=host)
+    except shortURL.DoesNotExist:
+        try:
+            short_url = shortURL.objects.get(short_code=code, custom_domain__isnull=True)
+        except shortURL.DoesNotExist:
+            return HttpResponseBadRequest("Invalid short URL")
+
     return redirect(short_url.original_url)
