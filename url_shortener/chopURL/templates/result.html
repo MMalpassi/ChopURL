@@ -1,11 +1,37 @@
-<h2>The URL was CHOPPED!</h2>
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+        <title>ChopURL - Result</title>
+    </head>
+    <body>
+        <h1>Your URL was Chopped!</h1>
+        
+        <div class="main-container">
+            <div class="description">
+                <h2>Here's your new short link:</h2>
+            </div>
 
-{% if chop_short_url %}
-<p>🔗 ChopURL link: <a href="{{chop_short_url.short_code}}">{{ request.build_absolute_uri }}/{{ chop_short_url.short_code }}</a></p>
-{% endif %}
+            <div class="result-box">
+                {% if chop_short_url %}
+                    <p>🔗 ChopURL link: 
+                        <a href="/{{ chop_short_url.short_code }}">
+                            {{ request.build_absolute_uri }}/{{ chop_short_url.short_code }}
+                        </a>
+                    </p>
+                {% endif %}
 
-{% if pyservice_short_url %}
-<p>🌐 Pyshorteners link (TinyURL): <a href="{{url}}">{{ pyservice_short_url }}</a></p>
-{% endif %}
+                {% if pyservice_short_url %}
+                    <p>🌐 Pyshorteners link (TinyURL): 
+                        <a href="{{ pyservice_short_url }}">
+                            {{ pyservice_short_url }}
+                        </a>
+                    </p>
+                {% endif %}
 
-<p>🔗 Chop more URLs!: <a href="http://localhost:8000/">ChopURL</a></p>
+                <p>🔗 Chop more URLs!: <a href="http://localhost:8000/">Go back</a></p>
+            </div>
+        </div>
+    </body>
+</html>
