@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 body {
+    background: url('../images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: #1a1e27;
     margin: 0;
@@ -14,19 +16,47 @@ h1 {
     margin-top: 30px;
 }
 
-.main-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 50px;
-    gap: 60px;
-    padding: 0 10%;
+.hero {
+    text-align: center;
+    padding: 100px 20px 50px;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.5); 
 }
 
-.description {
-    max-width: 300px;
-    font-size: 1.2rem;
-    color: #ffffff;
+.logo {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.main-container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.button-create{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    size: 50px;
+}
+
+.form-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 form {
