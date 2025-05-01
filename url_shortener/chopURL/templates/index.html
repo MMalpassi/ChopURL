@@ -16,40 +16,40 @@
         </section>
         
         <div class="d-flex justify-content-center my-4 w-100">
-            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#formModal">
+            <button type="button" class="btn btn-secondary" style="font-size: 1.5rem; padding: 1rem 2rem;" data-bs-toggle="modal" data-bs-target="#formModal">
                 Create your URL!
             </button>
         </div>
     
         <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="formModalLabel">Crear tu URL</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="formModalLabel">Create your URL</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                            <label for="url" class="form-label">Enter your URL:</label>
+                            <input type="url" class="form-control" name="url" required>
+                            </div>
+                            <div class="mb-3">
+                            <label for="custom_domain" class="form-label">Enter custom domain (only available with ChopURL):</label>
+                            <input type="text" class="form-control" name="custom_domain" placeholder="e.g., mybrand.com">
+                            </div>
+                            <div class="mb-3">
+                            <label for="chopurl_option" class="form-label">Select the service:</label>
+                            <select class="form-select" name="chopurl_option" id="chopurl_option">
+                                <option value="chopservice">ChopURL</option>
+                                <option value="pyservice">TinyURL</option>
+                            </select>
+                            </div>
+                            <button type="submit" class="btn btn-success">Chop URL!</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="modal-body">
-                <form method="POST">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                    <label for="url" class="form-label">Enter your URL:</label>
-                    <input type="url" class="form-control" name="url" required>
-                    </div>
-                    <div class="mb-3">
-                    <label for="custom_domain" class="form-label">Enter custom domain (optional):</label>
-                    <input type="text" class="form-control" name="custom_domain" placeholder="e.g., mybrand.com">
-                    </div>
-                    <div class="mb-3">
-                    <label for="chopurl_option" class="form-label">Select the service:</label>
-                    <select class="form-select" name="chopurl_option" id="chopurl_option">
-                        <option value="chopservice">ChopURL</option>
-                        <option value="pyservice">TinyURL</option>
-                    </select>
-                    </div>
-                    <button type="submit" class="btn btn-success">Chop URL!</button>
-                </form>
-                </div>
-            </div>
             </div>
         </div>
     

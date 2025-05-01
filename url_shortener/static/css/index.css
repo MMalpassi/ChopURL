@@ -9,13 +9,6 @@ body {
     padding: 0;
 }
 
-h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: #ffffff;
-    margin-top: 30px;
-}
-
 .hero {
     text-align: center;
     padding: 100px 20px 50px;
@@ -39,19 +32,6 @@ h1 {
     margin: 0 auto;
 }
 
-.main-container {
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-}
-
-.button-create{
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-    size: 50px;
-}
-
 .form-box{
     display: flex;
     justify-content: center;
@@ -59,8 +39,15 @@ h1 {
     height: 100vh;
 }
 
+.modal-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 form {
-    width: 40%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     padding: 30px;
@@ -96,6 +83,11 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+.features, .footer{
+    color: #ffffff;
+    padding: 80px;
 }
 
 /*Result*/
